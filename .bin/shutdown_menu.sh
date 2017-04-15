@@ -120,7 +120,6 @@ menu=(
   [Halt]="systemctl halt"
   [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
   [Logout]="i3-msg exit"
-  [Cancel]=""
 )
 menu_nrows=${#menu[@]}
 
