@@ -4,13 +4,14 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
+smart_gaps on
+gaps inner 7
 exec --no-startup-id compton -b
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-bindsym $mod+Shift+l exec $HOME/.bin/lock.sh
+bindsym $mod+Shift+l exec $HOME/.bin/newlock.sh -p -f InputMono
 #bindsym $mod+x exec python3 /home/phileas/.bin/laut.py up 5
 bindsym $mod+c exec python3 /home/phileas/.bin/laut.py down 5
 exec --no-startup-id feh --bg-fill ~/Pictures/w.jpeg
