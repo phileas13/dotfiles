@@ -36,12 +36,26 @@ def findandreplace(pattern, subst, file):
 			print(line)
 		else:
 			sys.stdout.write(line)
+			
+def iterateforreplace(d, path):
+	for i in d:
+		findandreplace(d[0], d[1], path)
 
 def write_i3(colors, I3CONFIG_PATH):
 	#backup(I3CONFIG_PATH)
 	findandreplace('        background ', '        background ' + colors['background'], I3CONFIG_PATH)
 	findandreplace('        statusline ', '        statusline ' + colors['foreground'], I3CONFIG_PATH)
 	findandreplace('        separator ', '        separator ' + colors['foreground'], I3CONFIG_PATH)
+	
+def write_i3_alt(colors, I3CONFIG_PATH):
+	#backup(I3CONFIG_PATH)
+	d = {
+		'        background ':'        background {}'.format(colors['background'])
+		'        statusline ':'        statusline {}'.format(colors['foreground'])
+		'        separator ':'        separator {}'.format(colors['foreground'])
+	}
+	iterateforreplace(d, I3CONFIG_PATH)
+
 
 def write_rofi(colors, ROFI_PATH):
 	#backup(ROFI_PATH)
@@ -55,6 +69,22 @@ def write_rofi(colors, ROFI_PATH):
 		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
 	findandreplace('rofi.color-urgent: ', 'rofi.color-urgent: ' + colors['background'] + ', ' + colors['color9'] + ', '
 		+ colors['color0'] + ', ' + colors['color9'] + ', ' + colors['color15'], ROFI_PATH)
+	
+def write_rofi_alt(colors, ROFI_PATH):
+	#backup(ROFI_PATH)
+	d = {
+			findandreplace('rofi.color-window: ', 'rofi.color-window: ' + colors['background'] + ', ' + colors['color0'] + ', '
+		+ colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
+	findandreplace('rofi.color-normal: ', 'rofi.color-normal: ' + colors['background'] + ', ' + colors['color15'] + ', '
+		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
+	findandreplace('rofi.color-active: ', 'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
+		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
+	findandreplace('rofi.color-active: ', 'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
+		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
+	findandreplace('rofi.color-urgent: ', 'rofi.color-urgent: ' + colors['background'] + ', ' + colors['color9'] + ', '
+		+ colors['color0'] + ', ' + colors['color9'] + ', ' + colors['color15'], ROFI_PATH)
+	}
+	iterateforreplace(d, ROFI_PATH)
 
 def write_termite(colors, TERMITE_PATH):
 	findandreplace('foreground_bold', 'foreground_bold      = ' + colors['foreground'] + ' #fett', TERMITE_PATH)
