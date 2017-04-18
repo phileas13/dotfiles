@@ -6,12 +6,11 @@ import os
 
 ROFI_PATH = '/home/phileas/.Xresources'
 I3CONFIG_PATH = '/home/phileas/.config/i3/config'
-#I3CONFIG_PATH = '/home/phileas/Desktop/pp/i3config'
 TERMITE_PATH = '/home/phileas/.config/termite/config'
 help = 'ricer.py -i <inputfile>'
 
 def rollback():
-	#executor.run('mv ' + rofi_path + '.bak ' + rofi_path)
+	#os.system('mv ' + rofi_path + '.bak ' + rofi_path)
 	pass
 
 def backup(path):
@@ -32,7 +31,6 @@ def readconfig(inputfile):
 	return colors#, options, files
 
 def findandreplace(pattern, subst, file):
-	#x = fileinput.input(file, inplace=1)
 	x = fileinput.input(file, inplace=1)
 	for line in x:
 		if pattern in line:
