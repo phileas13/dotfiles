@@ -8,7 +8,7 @@ ROFI_PATH = '/home/phileas/.Xresources'
 I3CONFIG_PATH = '/home/phileas/.config/i3/config'
 #I3CONFIG_PATH = '/home/phileas/Desktop/pp/i3config'
 TERMITE_PATH = '/home/phileas/.config/termite/config'
-help = 'test.py -i <inputfile>'
+help = 'ricer.py -i <inputfile>'
 
 def rollback():
 	#executor.run('mv ' + rofi_path + '.bak ' + rofi_path)
@@ -21,7 +21,7 @@ def backup(path):
 def reloadconfigs():
 	os.system('xrdb /home/phileas/.Xresources')
 	os.system('i3-msg restart')
-
+	os.system('killall -USR1 termite')
 
 def readconfig(inputfile):
 	config = configparser.ConfigParser()
@@ -61,8 +61,8 @@ def write_rofi(colors, ROFI_PATH):
 		+ colors['color0'] + ', ' + colors['color9'] + ', ' + colors['color15'], ROFI_PATH)
 
 def write_termite(colors, TERMITE_PATH):
-	findandreplace('#fett', 'foreground_bold      = ' + colors['foreground'] + ' #fett', TERMITE_PATH)
-	findandreplace('#nomal', 'foreground      = ' + colors['foreground'] + ' #nomal', TERMITE_PATH)
+	findandreplace('foreground_bold', 'foreground_bold      = ' + colors['foreground'] + ' #fett', TERMITE_PATH)
+	findandreplace('foreground ', 'foreground      = ' + colors['foreground'] + ' #nomal', TERMITE_PATH)
 	findandreplace('cursor', 'cursor      = ' + colors['foreground'], TERMITE_PATH)
 	findandreplace('background      = ', 'background      = ' + colors['background'], TERMITE_PATH)
 	findandreplace('color0', 'color0      = ' + colors['color0'], TERMITE_PATH)
