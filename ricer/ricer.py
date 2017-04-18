@@ -73,15 +73,15 @@ def write_rofi(colors, ROFI_PATH):
 def write_rofi_alt(colors, ROFI_PATH):
 	#backup(ROFI_PATH)
 	d = {
-			findandreplace('rofi.color-window: ', 'rofi.color-window: ' + colors['background'] + ', ' + colors['color0'] + ', '
+		'rofi.color-window: ':'rofi.color-window: ' + colors['background'] + ', ' + colors['color0'] + ', '
 		+ colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
-	findandreplace('rofi.color-normal: ', 'rofi.color-normal: ' + colors['background'] + ', ' + colors['color15'] + ', '
+		'rofi.color-normal: ':'rofi.color-normal: ' + colors['background'] + ', ' + colors['color15'] + ', '
 		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
-	findandreplace('rofi.color-active: ', 'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
+		'rofi.color-active: ':'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
 		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
-	findandreplace('rofi.color-active: ', 'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
+		'rofi.color-active: ':'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
 		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
-	findandreplace('rofi.color-urgent: ', 'rofi.color-urgent: ' + colors['background'] + ', ' + colors['color9'] + ', '
+		'rofi.color-urgent: ':'rofi.color-urgent: ' + colors['background'] + ', ' + colors['color9'] + ', '
 		+ colors['color0'] + ', ' + colors['color9'] + ', ' + colors['color15'], ROFI_PATH)
 	}
 	iterateforreplace(d, ROFI_PATH)
@@ -111,6 +111,34 @@ def write_termite(colors, TERMITE_PATH):
 	#Change:
 	#findandreplace('color15' , 'color15      = {}'.format(colors['color15']), TERMITE_PATH)
 
+def write_termite_alt(colors, TERMITE_PATH):
+	d = {
+		'foreground_bold':'foreground_bold      = {}'.format( + colors['foreground'])
+		'foreground ':'foreground      = {}'.format( + colors['foreground'].format()
+		'cursor':'cursor      = {}'.format( + colors['foreground'])
+		'background      = ':'background      = {}'.format( + colors['background'])
+		'color0':'color0      = {}'.format( + colors['color0'])
+		'color8':'color8      = {}'.format( + colors['color8'])
+		'color1':'color1      = {}'.format( + colors['color1'])
+		'color9':'color9      = {}'.format( + colors['color9'])
+		'color2':'color2      = {}'.format( + colors['color2'])
+		'color10':'color10      = {}'.format( + colors['color10'])
+		'color3':'color3      = {}'.format( + colors['color3'])
+		'color11':'color11      = {}'.format( + colors['color11'])
+		'color4':'color4      = {}'.format( + colors['color4'])
+		'color12':'color12      = {}'.format( + colors['color12'])
+		'color5':'color5      = {}'.format( + colors['color5'])
+		'color5':'color5      = {}'.format( + colors['color5'])
+		'color13':'color13      = {}'.format( + colors['color13'])
+		'color6':'color6      = {}'.format( + colors['color6'])
+		'color14':'color14      = {}'.format( + colors['color14'])
+		'color7':'color7      = {}'.format( + colors['color7'])
+		'color15':'color15      = {}'.format( + colors['color15']
+	}
+	
+	iterateforreplace(d, TERMITE_PATH)
+	#Change:
+	#findandreplace('color15' , 'color15      = {}'.format(colors['color15']), TERMITE_PATH)
 
 
 def main(argv, help, I3CONFIG_PATH, ROFI_PATH, TERMITE_PATH):
