@@ -10,6 +10,13 @@ exec --no-startup-id compton -b
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
+bindsym XF86AudioRaiseVolume exec --no-startup-id python3 $HOME/.bin/laut.py up 5
+bindsym XF86AudioLowerVolume exec --no-startup-id python3 $HOME/.bin/laut.py down 5
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 bindsym $mod+Shift+l exec $HOME/.bin/newlock.sh -p -f InputMono
 #bindsym $mod+x exec python3 /home/phileas/.bin/laut.py up 5
@@ -169,3 +176,5 @@ bar {
         background #282F39
     }
 }
+
+#xautolock -time 7 -locker "systemctl suspend && $HOME/.bin/newlock.sh -p -f InputMono" &

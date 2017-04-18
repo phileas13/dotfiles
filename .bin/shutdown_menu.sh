@@ -27,7 +27,7 @@
 #######################################################################
 
 # Use a custom lock script
-LOCKSCRIPT="$HOME/.bin/lock.sh"
+LOCKSCRIPT="$HOME/.bin/newlock.sh -p -f InputMono"
 
 # Colors: FG (foreground), BG (background), HL (highlighted)
 FG_COLOR="#bbbbbb"

@@ -20,7 +20,7 @@ def set_volume(percentage):
 	emit_signal()
 
 def emit_signal():
-	executor.run('pkill -RTMIN+1 i3blocks')
+	executor.run('pkill -RTMIN i3blocks')
 
 def write(message):
 	sys.stdout.write(message)
@@ -28,10 +28,12 @@ def write(message):
 
 def increase(percentage):
 	executor.run('amixer -D pulse sset Master ' + str(percentage) + '%+')
+	executor.run('aplay $HOME/.bin/volume.wav')
 	emit_signal()
 
 def decrease(percentage):
 	executor.run('amixer -D pulse sset Master ' + str(percentage) + '%-')
+	executor.run('aplay $HOME/.bin/volume.wav')
 	emit_signal()
 
 def mute():
