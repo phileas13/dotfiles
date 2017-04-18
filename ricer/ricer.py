@@ -36,6 +36,7 @@ def findandreplace(pattern, subst, file):
 			print(line)
 		else:
 			sys.stdout.write(line)
+	x.close() # double check
 			
 def iterateforreplace(d, path):
 	for key, value in d.items():
