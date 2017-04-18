@@ -26,8 +26,6 @@ def readconfig(inputfile):
 	config = configparser.ConfigParser()
 	config.read(inputfile)
 	colors  = config['colors']
-	#options = config['options']
-	#files = config['files']
 	return colors#, options, files
 
 def findandreplace(pattern, subst, file):
