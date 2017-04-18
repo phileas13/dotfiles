@@ -38,8 +38,8 @@ def findandreplace(pattern, subst, file):
 			sys.stdout.write(line)
 			
 def iterateforreplace(d, path):
-	for i in d:
-		findandreplace(d[0], d[1], path)
+	for key, value in d.items():
+		findandreplace(key, value, path)
 
 def write_i3(colors, I3CONFIG_PATH):
 	#backup(I3CONFIG_PATH)
@@ -59,11 +59,9 @@ def write_i3_alt(colors, I3CONFIG_PATH):
 
 def write_rofi(colors, ROFI_PATH):
 	#backup(ROFI_PATH)
-	findandreplace('rofi.color-window: ', 'rofi.color-window: ' + colors['background'] + ', ' + colors['color0'] + ', '
-		+ colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
-	findandreplace('rofi.color-normal: ', 'rofi.color-normal: ' + colors['background'] + ', ' + colors['color15'] + ', '
-		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
-	findandreplace('rofi.color-active: ', 'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
+	'rofi.color-window: ':'rofi.color-window: {}, {}, {}, {}'.format(colors['background'], colors['color0'], colors['color10'], colors['color0'])
+	'rofi.color-normal: ':'rofi.color-normal: {}, {}, {}, {}, {}'.format(colors['background'], colors['color15'], colors['color0'], colors['color10'], colors['color0'])
+	"rofi.color-active: ':'rofi.color-active: {}, {}, {}, {}, {}'.format colors['background'] + ', ' + colors['color15'] + ', '
 		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
 	findandreplace('rofi.color-active: ', 'rofi.color-active: ' + colors['background'] + ', ' + colors['color15'] + ', '
 		+ colors['color0'] + ', ' + colors['color10'] + ', ' + colors['color0'], ROFI_PATH)
