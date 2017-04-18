@@ -78,6 +78,8 @@ def write_termite(colors, TERMITE_PATH):
 	findandreplace('color14', 'color14      = ' + colors['color14'], TERMITE_PATH)
 	findandreplace('color7', 'color7      = ' + colors['color7'], TERMITE_PATH)
 	findandreplace('color15' , 'color15      = ' + colors['color15'], TERMITE_PATH)
+	#Change:
+	#findandreplace('color15' , 'color15      = {}'.format(colors['color15']), TERMITE_PATH)
 
 
 
