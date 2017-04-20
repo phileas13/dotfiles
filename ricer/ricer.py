@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import fileinput
 import configparser
 import sys
@@ -5,12 +7,9 @@ import getopt
 import os
 
 ROFI_PATH = '/home/phileas/.Xresources'
-#ROFI_PATH = '/home/phileas/Desktop/lolcat/.Xresources'
 I3CONFIG_PATH = '/home/phileas/.config/i3/config'
-#I3CONFIG_PATH = '/home/phileas/Desktop/lolcat/i3config'
 TERMITE_PATH = '/home/phileas/.config/termite/config'
-#TERMITE_PATH = '/home/phileas/Desktop/lolcat/termite'
-help = 'ricer.py -i <inputfile>'
+HELP = 'ricer.py -i <inputfile>'
 
 def rollback():
 	#os.system('mv ' + rofi_path + '.bak system' + rofi_path)
@@ -39,7 +38,7 @@ def findandreplace(pattern, subst, file):
 			print(line)
 		else:
 			sys.stdout.write(line)
-	x.close() # double check
+	x.close()
 			
 def iterateforreplace(d, path):
 	for key, value in d.items():
@@ -90,23 +89,20 @@ def write_termite(colors, TERMITE_PATH):
 		'color15': 'color15      = {}'.format(colors['color15'])
 	}
 	iterateforreplace(d, TERMITE_PATH)
-	#Change:
-	#findandreplace('color15' , 'color15      = {}'.format(colors['color15']), TERMITE_PATH)
 
-
-def main(argv, help, I3CONFIG_PATH, ROFI_PATH, TERMITE_PATH):
+def main(argv, HELP, I3CONFIG_PATH, ROFI_PATH, TERMITE_PATH):
 	if len(argv) == 0:
-		print(help)
+		print(HELP)
 		sys.exit(2)
 	scheme_path = ''
 	try:
 		opts, args = getopt.getopt(argv,"i:",["ifile="])
 	except getopt.GetoptError:
-		print(help)
+		print(HELP)
 		sys.exit(2)
 	for opt, arg in opts:
 		if opt == '-h':
-			print(help)
+			print(HELP)
 			sys.exit()
 		elif opt in ("-i", "--ifile"):
 			inputfile = arg
@@ -117,8 +113,4 @@ def main(argv, help, I3CONFIG_PATH, ROFI_PATH, TERMITE_PATH):
 	reloadconfigs()
 
 if __name__ == '__main__':
-	main(sys.argv[1:], help, I3CONFIG_PATH, ROFI_PATH, TERMITE_PATH)
-#read config to dict
-#back files up
-#rewrite files
-#restart i3
+	main(sys.argv[1:], HELP, I3CONFIG_PATH, ROFI_PATH, TERMITE_PATH)
